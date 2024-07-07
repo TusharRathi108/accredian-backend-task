@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
-// import insights from "./routes/insights.routes";
+import refer from "./routes/new-refer.routes";
 
 // loads environment variables.
 dotenv.config();
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 // calling api routes.
-// app.use("/api", insights);
+app.use("/api", refer);
 
 // start express server.
 app.listen(PORT, () => {
