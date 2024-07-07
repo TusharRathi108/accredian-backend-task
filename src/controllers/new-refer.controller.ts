@@ -1,8 +1,21 @@
 import { Request, Response } from "express";
+import nodemailer from "nodemailer";
 import { ReferralFormSchema } from "../schemas/refer-schema";
 import prisma from "../../prisma/client";
 
 export const newRefer = async (req: Request, res: Response) => {
+  // Configuration object for snding mail
+  let config = {
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_APP_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  };
+
+  // creating a transporter object
+  let transporter = nodemailer.createTransport(config);
+
   try {
     // Validate the incoming data
     const data = await req.body;
@@ -35,10 +48,23 @@ export const newRefer = async (req: Request, res: Response) => {
       },
     });
 
-    return res.status(200).json({ data: formData });
+    // message object
+    let emailMessage = {
+      from: "rathitushar25@gmail.com",
+      to: email,
+      subject: "Welcome to Referral Nexus",
+      html: `<b>Hello there, thanks for provinding the referral ${rname}!</b>`,
+    };
+
+    // send the email using the transporter object we created earlier
+    await transporter.sendMail(emailMessage).then(() => {
+      return res.status(201).json({
+        success: "Your referral email has been sent successfully!",
+      });
+    });
   } catch (error) {
-    console.log(error);
     // Handle any unexpected errors
+    console.log(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };
