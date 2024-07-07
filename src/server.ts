@@ -1,6 +1,8 @@
+import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-import cors from "cors";
+
+// routes
 import refer from "./routes/new-refer.routes";
 
 // loads environment variables.
@@ -12,6 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 // use cors.
 app.use(cors());
+app.use(express.json());
 
 // calling api routes.
 app.use("/api", refer);

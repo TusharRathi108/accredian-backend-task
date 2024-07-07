@@ -3,12 +3,24 @@
     "target": "ES6",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,                   // Include modules for JSON files
+    "typeRoots": ["./node_modules/@types"],      // List of folders to include type definitions from
+    "baseUrl": ".",                              // Base directory to resolve non-relative module names
+    "paths": {
+      "@/*": ["./src/*"]                        // Alias for module resolution
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src/**/*.ts", // Include all TypeScript files in the src directory
+    "src/**/*.tsx" // Include all TypeScript React files in the src directory
+  ],
+  "exclude": [
+    "node_modules", // Exclude node_modules from compilation
+    "dist" // Exclude dist directory from compilation
+  ]
 }
