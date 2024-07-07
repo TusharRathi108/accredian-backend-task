@@ -19,11 +19,11 @@ model Refer {
 
   ReferrerName  String @db.VarChar(50)
   ReferrerEmail String @db.VarChar(100)
-  ReferrerPhone BigInt @db.BigInt()
+  ReferrerPhone String @db.VarChar(10)
 
   SenderName    String @db.VarChar(50)
   SenderEmail   String @db.VarChar(100)
-  SenderPhone   BigInt @db.BigInt()
+  SenderPhone   String @db.VarChar(10)
   SenderMessage String @db.VarChar(500)
 
   createdAt DateTime @default(now())

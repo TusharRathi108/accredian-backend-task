@@ -27,10 +27,10 @@ export const newRefer = async (req: Request, res: Response) => {
       data: {
         ReferrerName: rname,
         ReferrerEmail: remail,
-        ReferrerPhone: parseInt(rphone),
+        ReferrerPhone: rphone,
         SenderName: name,
         SenderEmail: email,
-        SenderPhone: parseInt(phone),
+        SenderPhone: phone,
         SenderMessage: message,
       },
     });
