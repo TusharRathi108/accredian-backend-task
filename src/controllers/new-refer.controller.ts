@@ -36,7 +36,7 @@ export const newRefer = async (req: Request, res: Response) => {
       validatedData.data;
 
     // create a new refer-form-data
-    const formData = await prisma.refer.create({
+    await prisma.refer.create({
       data: {
         ReferrerName: rname,
         ReferrerEmail: remail,
